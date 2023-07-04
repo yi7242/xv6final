@@ -6,6 +6,17 @@
 #include "spinlock.h"
 #include "proc.h"
 
+//RTC macro
+#define VIRTRTC0 0x101000
+#define VIRTRTC0_IRQ 1
+#define RD(r) ((volatile uint32*)(VIRTRTC0 + (r)))
+
+#define TIME_LOW 0x00
+#define TIME_HIGH 0x04
+#define ALARM_LOW 0x08
+#define ALARM_HIGH 0x0c
+#define CLEAR_INTERRUPT 0x10
+
 uint64
 sys_exit(void)
 {
@@ -93,6 +104,10 @@ sys_uptime(void)
 //return epoch time
 uint64
 sys_time(void) {
-  printf("Hi!\n");
+  uint32 time_low32 = 0;
+  uint32 time_high32 = 0;
+  time_low32 = *RD(TIME_LOW);
+  time_high32 = *RD(TIME_HIGH);
+  printf("high is %d, low is %d\n", time_low32, time_high32);
   return 0;
 }
