@@ -5,6 +5,9 @@
 int
 main(int argc, char *argv[])
 {
-  time();
+  int year = 10;
+  printf("year p is %p\n", &year);
+  time(&year);
+  printf("year is %d", year);
   exit(0);
 }
