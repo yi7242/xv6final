@@ -89,3 +89,10 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+//return epoch time
+uint64
+sys_time(void) {
+  printf("Hi!\n");
+  return 0;
+}
