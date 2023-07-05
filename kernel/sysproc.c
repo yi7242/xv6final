@@ -48,7 +48,7 @@ sys_wait(void)
 }
 
 uint64
-sys_sbrk(void)
+sys_sbrk(void)  
 {
   uint64 addr;
   int n;
@@ -105,8 +105,8 @@ sys_uptime(void)
 //return epoch time
 uint64
 sys_time(void) {
-  uint64 testarg;
-  argaddr(0,&testarg);
+  int* p;
+  argaddr(0,(uint64 *)&p);
   uint64 time_low32 = 0;
   uint64 time_high32 = 0;
   time_low32 = *R(TIME_LOW);
@@ -117,9 +117,8 @@ sys_time(void) {
   ConvertUnixTimeToTokyoTime(time, &year, &month, &day, &hour, &minute, &second, &weekday);
   // printf("time is %p \n", time);
   printf("%d/%d/%d %d:%d:%d(%d)\n",year,month,day,hour,minute,second,weekday);
-  uint64 test;
-  fetchaddr(testarg, &test);
-  printf("num is %d\n", test);
-  printf("first p is %d, sec p is %p\n", testarg, &test);
+  fetchaddr()
+  int x = *p;
+  printf("num is %d\n", x);
   return 0;
 }
