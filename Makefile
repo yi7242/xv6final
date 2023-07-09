@@ -133,6 +133,11 @@ UPROGS=\
 	$U/_wc\
 	$U/_zombie\
 	$U/_time\
+	$U/_prime\
+	$U/_pwd\
+	$U/_exectest\
+	$U/_primeold\
+	$U/_mysh\
 
 fs.img: mkfs/mkfs README $(UPROGS)
 	mkfs/mkfs fs.img README $(UPROGS)
