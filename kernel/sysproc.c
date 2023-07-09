@@ -5,7 +5,6 @@
 #include "memlayout.h"
 #include "spinlock.h"
 #include "proc.h"
-#include "dateconv.c"
 
 //RTC macro
 #define VIRTRTC0 0x101000
@@ -113,12 +112,23 @@ sys_time(void) {
   time_high32 = *R(TIME_HIGH);
   uint64 time = (time_high32<<32) | time_low32;
   time = time / 1000000000;
-  uint32 year;uint8 month; uint8 day; uint8 hour; uint8 minute; uint8 second; uint8 weekday;
-  ConvertUnixTimeToTokyoTime(time, &year, &month, &day, &hour, &minute, &second, &weekday);
-  // printf("time is %p \n", time);
-  printf("%d/%d/%d %d:%d:%d(%d)\n",year,month,day,hour,minute,second,weekday);
-  fetchaddr()
-  int x = *p;
-  printf("num is %d\n", x);
-  return 0;
+  return time;
+}
+
+//return datetime
+uint64
+sys_datetime(void) {
+  int* p;
+  argaddr(0,(uint64 *)&p);
+  uint64 time_low32 = 0;
+  uint64 time_high32 = 0;
+  time_low32 = *R(TIME_LOW);
+  time_high32 = *R(TIME_HIGH);
+  uint64 time = (time_high32<<32) | time_low32;
+  time = time / 1000000000;
+  
+  
+  // uint64 datetime =  second + 100*minute + 10000*hour + 1000000 * day + 100000000*month + 10000000000*1;
+  uint64 datetime =  4300000000;
+  return datetime;
 }
