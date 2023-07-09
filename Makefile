@@ -138,6 +138,7 @@ UPROGS=\
 	$U/_exectest\
 	$U/_primeold\
 	$U/_mysh\
+	$U/_pipetest\
 
 fs.img: mkfs/mkfs README $(UPROGS)
 	mkfs/mkfs fs.img README $(UPROGS)
