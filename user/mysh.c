@@ -1,3 +1,5 @@
+// shell with redirect and pipe
+
 #include "kernel/types.h"
 #include "kernel/fcntl.h"
 #include "kernel/stat.h"
